@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>ბიბლიოთეკა</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3 th:onclick="|window.location.href='@{/books/list}'|">ბიბლიოთეკა</h3>
+    <hr>
+
+<!--     Add a search form -->
+
+    <form action="#" th:action="@{/books/search}"
+          method="GET" class="form-inline">
+
+        <a th:href="@{/books/showFormForAdd}"
+           class="btn btn-primary btn-sm mb-3">
+            Add Employee
+        </a>
+
+        <input type="search"
+               name="name"
+               placeholder="სახელი"
+               class="form-control-sm ml-5 mr-2 mb-3" />
+
+        <input type="search"
+               name="author"
+               placeholder="ავტორი"
+               class="form-control-sm mr-2 mb-3" />
+        <input type="search"
+               name="publisher"
+               placeholder="გამომცემელი"
+               class="form-control-sm mr-2 mb-3" />
+
+        <button type="submit"
+                class="btn btn-success btn-sm mb-3">Search</button>
+
+    </form>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>სახელი</th>
+            <th>ავტორი</th>
+            <th>გამომცემლობა</th>
+            <th>ჟანრი</th>
+            <th>ენა</th>
+            <th>წელი</th>
+            <th>მოქმედება</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="tempBook : ${books}">
+
+            <td th:text="${tempBook.name}" />
+            <td th:text="${tempBook.author}" />
+            <td th:text="${tempBook.publisher}" />
+            <td th:text="${tempBook.genre}" />
+            <td th:text="${tempBook.language}" />
+            <td th:text="${tempBook.date}" />
+
+            <td>
+                <!-- Add "update" button/link -->
+                <a th:href="@{/books/showFormForUpdate(bookId=${tempBook.id})}"
+                   class="btn btn-info btn-sm">
+                    Update
+                </a>
+
+                <!-- Add "delete" button/link -->
+                <a th:href="@{/books/delete(bookId=${tempBook.id})}"
+                   class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('ნამდვილად გსურთ წაშლა?'))) return false">
+                    Delete
+                </a>
+
+            </td>
+
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>წიგნის დამატება</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3>წიგნის დამატება</h3>
+    <hr>
+
+    <p class="h4 mb-4">Save Employee</p>
+
+    <form action="#" th:action="@{/books/save}"
+          th:object="${book}" method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{id}"/>
+
+        <div class="form-inline">
+
+            <label for="name">სახელი</label>
+            <input type="text" th:field="*{name}" id="name"
+                   class="form-control mb-4 col-4" placeholder="სახელი">
+
+            <!-- Add error message (if present) -->
+            <span th:if="${#fields.hasErrors('name')}"
+                  th:errors="*{name}"
+                  class="badge badge-danger ml-2 mb-4"></span>
+
+        </div>
+
+        <div class="form-inline">
+            <label for="author">ავტორი</label>
+            <input type="text" th:field="*{author}" id="author"
+                   class="form-control mb-4 col-4" placeholder="ავტორი">
+
+            <!-- Add error message (if present) -->
+            <span th:if="${#fields.hasErrors('author')}"
+                  th:errors="*{author}"
+                  class="badge badge-danger ml-2 mb-4"></span>
+
+        </div>
+
+        <div class="form-inline">
+            <label for="publisher">გამომცემლობა</label>
+            <input type="text" th:field="*{publisher}" id="publisher"
+                   class="form-control mb-4 col-4" placeholder="გამომცემლობა">
+
+
+        </div>
+
+        <div class="form-inline">
+            <label for="lang">ენა</label>
+            <select th:field="*{language}" id="lang">
+            <option value="ქართული">ქართული</option>
+            <option value="ინგლსიური">ინგლსიური</option>
+            <option value="იტალიური">იტალიური</option>
+            <option value="ფრანგული">ფრანგული</option>
+            </select>
+        </div>
+
+        <div class="form-inline">
+            <label for="genre">ჟანრი</label>
+            <select th:field="*{genre}" id="genre">
+                <option value="პოემა">პოემა</option>
+                <option value="ლირიკა">ლირიკა</option>
+                <option value="ეკრნიზაცია">ეკრნიზაცია</option>
+                <option value="კომედია">კომედია</option>
+                <option value="დეტექტივი">დეტექტივი</option>
+                <option value="ფენტეზი">ფენტეზი</option>
+                <option value="რომანი">რომანი</option>
+            </select>
+        </div>
+
+        <div class="form-inline">
+            <label for="date">თარიღი</label>
+            <input type="text" th:field="*{date}" id="date">
+
+        </div>
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/books/list}">დაბრუნდით წიგნების სიაზე</a>
+
+</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
